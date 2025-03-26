@@ -17,7 +17,10 @@ func handler(o options) error {
 	}
 	rootInode := fsroot.New(client)
 	server, err := fs.Mount(o.mountpoint, rootInode, &fs.Options{
-		MountOptions: fuse.MountOptions{Debug: o.verbose},
+		MountOptions: fuse.MountOptions{
+			Options: []string{"ro"},
+			Debug:   o.verbose,
+		},
 	})
 	if err != nil {
 		return err

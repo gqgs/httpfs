@@ -62,7 +62,7 @@ func (f *file) Read(ctx context.Context, fh fs.FileHandle, dest []byte, off int6
 
 func (f *file) Getattr(ctx context.Context, fh fs.FileHandle, out *fuse.AttrOut) syscall.Errno {
 	f.logger.Debug("file getattr call", "name", f.info.Name)
-	out.Mode = uint32(f.info.Mode)
+	out.Mode = 0400
 	infoTime := uint64(f.info.ModTime.Unix())
 	out.Nlink = 1
 	out.Mtime = infoTime
